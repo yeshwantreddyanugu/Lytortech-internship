@@ -21,7 +21,7 @@ const Contact = () => {
       title: 'WhatsApp Support',
       details: '+91 6301111060',
       description: 'Quick support via WhatsApp',
-      action: 'https://wa.me/6301111060',
+      action: 'https://wa.me/916301111060',
       color: 'from-green-500 to-green-600'
     }
     ,
