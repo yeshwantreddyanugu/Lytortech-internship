@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { X, Mail, Lock, Eye, EyeOff } from 'lucide-react';
@@ -19,24 +18,57 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const API_URL = 'https://zovoaapi.lytortech.com/api/internship-auth/login';
+
   if (!isOpen) return null;
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate authentication
-    setTimeout(() => {
-      if (email.includes('@') && password.length >= 6) {
-        toast.success('Login successful! Welcome to your dashboard.');
+    const payload = { email, password };
+    console.log('[📦 Sending Login Payload]', payload);
+
+    try {
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'ngrok-skip-browser-warning': 'true',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const text = await response.text(); // Get raw response first
+      let data;
+
+      try {
+        data = JSON.parse(text); // Try parsing JSON
+      } catch (err) {
+        console.error('[❌ Login Error - Non-JSON response]', text);
+        throw new Error(text); // Force error flow
+      }
+
+      console.log('[✅ API Response]', data);
+
+      if (response.ok) {
+        localStorage.setItem('internshipUser', JSON.stringify(data));
+        toast.success('Login successful! Redirecting...');
         onClose();
         navigate('/dashboard');
       } else {
-        toast.error('Invalid credentials. Please check your email and password.');
+        toast.error(data.message || 'Login failed. Please check your credentials.');
       }
+    } catch (err: any) {
+      console.error('[❌ Login Error]', err);
+      toast.error(err.message || 'Something went wrong.');
+    } finally {
       setIsLoading(false);
-    }, 1500);
+    }
   };
+
+
+
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
@@ -45,7 +77,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
   };
 
   return (
-    <div 
+    <div
       className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4"
       onClick={handleBackdropClick}
     >
@@ -65,7 +97,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
           <CardTitle className="text-center text-2xl font-bold">Student Login</CardTitle>
           <p className="text-center text-gray-400">Access your internship dashboard</p>
         </CardHeader>
-        
+
         <CardContent>
           <form onSubmit={handleLogin} className="space-y-6">
             <div className="space-y-2">
@@ -82,7 +114,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
                 />
               </div>
             </div>
-            
+
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-300">Password</label>
               <div className="relative">
@@ -104,7 +136,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
                 </button>
               </div>
             </div>
-            
+
             <Button
               type="submit"
               className="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white py-6"
@@ -112,11 +144,11 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
             >
               {isLoading ? 'Signing In...' : 'Sign In to Dashboard'}
             </Button>
-            
+
             <div className="text-center space-y-2">
               <a href="#" className="text-purple-400 hover:text-purple-300 text-sm">Forgot Password?</a>
               <p className="text-gray-400 text-sm">
-                Don't have access? 
+                Don't have access?
                 <a href="#" className="text-purple-400 hover:text-purple-300 ml-1">Contact Support</a>
               </p>
             </div>
