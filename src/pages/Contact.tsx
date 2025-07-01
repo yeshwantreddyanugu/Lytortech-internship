@@ -11,31 +11,32 @@ const Contact = () => {
     {
       icon: <Phone className="w-6 h-6" />,
       title: 'Phone Support',
-      details: '+91 9876543210',
+      details: '+91 6301111060',
       description: 'Call for immediate assistance',
-      action: 'tel:+919876543210',
+      action: 'tel:6301111060',
       color: 'from-green-500 to-emerald-600'
     },
     {
       icon: <MessageCircle className="w-6 h-6" />,
       title: 'WhatsApp Support',
-      details: '+91 9876543210',
+      details: '+91 6301111060',
       description: 'Quick support via WhatsApp',
-      action: 'https://wa.me/919876543210?text=Hi, I need help with Android Development Internship',
+      action: 'https://wa.me/6301111060',
       color: 'from-green-500 to-green-600'
-    },
+    }
+    ,
     {
       icon: <Mail className="w-6 h-6" />,
       title: 'Email Support',
-      details: 'support@lytortech.com',
+      details: 'lytortech@gmail.com',
       description: 'Detailed queries via email',
-      action: 'mailto:support@lytortech.com',
+      action: 'mailto:lytortech@gmail.com',
       color: 'from-blue-500 to-purple-600'
     },
     {
       icon: <MapPin className="w-6 h-6" />,
       title: 'Office Address',
-      details: 'Bangalore, Karnataka',
+      details: 'Hanmakonda, Warangal',
       description: 'Visit our office',
       action: '#',
       color: 'from-orange-500 to-red-600'
@@ -80,7 +81,7 @@ const Contact = () => {
             <div>
               <h2 className="text-2xl sm:text-3xl font-bold mb-2">Get in Touch</h2>
               <p className="text-gray-400 mb-6 sm:mb-8 text-sm sm:text-base">Choose your preferred way to reach us. We're here to help!</p>
-              
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 {contactMethods.map((method, index) => (
                   <Card key={index} className="bg-gray-800 border-gray-700 hover:border-blue-500/50 transition-all duration-300 hover:scale-105 cursor-pointer group">
@@ -104,7 +105,7 @@ const Contact = () => {
             </div>
 
             {/* Quick Contact Form */}
-            <Card className="bg-gray-800 border-gray-700">
+            {/* <Card className="bg-gray-800 border-gray-700">
               <CardHeader>
                 <CardTitle className="text-xl sm:text-2xl text-white">Send us a Message</CardTitle>
               </CardHeader>
@@ -146,7 +147,7 @@ const Contact = () => {
                   Send Message
                 </Button>
               </CardContent>
-            </Card>
+            </Card> */}
           </div>
 
           {/* Sidebar */}
@@ -203,13 +204,19 @@ const Contact = () => {
                   Emergency Support
                 </h3>
                 <p className="text-gray-300 text-sm mb-3">For urgent technical issues during course</p>
-                <Button 
-                  onClick={() => handleContactClick('https://wa.me/919876543210?text=URGENT: I need immediate help with my course access')}
+                <Button
+                  onClick={() =>
+                    window.open(
+                      'https://wa.me/6301111060?text=URGENT: I need immediate help with my course access',
+                      '_blank'
+                    )
+                  }
                   className="w-full bg-red-500 hover:bg-red-600 text-white"
                 >
                   <MessageCircle className="mr-2 w-4 h-4" />
                   WhatsApp Now
                 </Button>
+
               </CardContent>
             </Card>
 
@@ -219,8 +226,13 @@ const Contact = () => {
                 <Users className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400 mx-auto mb-3" />
                 <h3 className="text-white font-semibold mb-2 text-sm sm:text-base">Join Our Community</h3>
                 <p className="text-gray-300 text-sm mb-4">Connect with 200+ students in our WhatsApp group</p>
-                <Button 
-                  onClick={() => handleContactClick('https://wa.me/919876543210?text=Hi, I want to join the Android Development community group')}
+                <Button
+                  onClick={() =>
+                    window.open(
+                      'https://chat.whatsapp.com/Jty04X7Ezw2Ci3Z8BTwR7h',
+                      '_blank'
+                    )
+                  }
                   className="w-full bg-green-500 hover:bg-green-600 text-white"
                 >
                   <MessageCircle className="mr-2 w-4 h-4" />
@@ -228,6 +240,7 @@ const Contact = () => {
                 </Button>
               </CardContent>
             </Card>
+
           </div>
         </div>
       </div>
