@@ -71,7 +71,7 @@ const Index = () => {
       color: "from-blue-500 to-cyan-500"
     },
     {
-      week: "Week 3-4", 
+      week: "Week 3-4",
       title: "UI/UX & Database Integration",
       lessons: 10,
       duration: "12 hours",
@@ -82,7 +82,7 @@ const Index = () => {
       week: "Week 5-6",
       title: "APIs & Backend Integration",
       lessons: 8,
-      duration: "10 hours", 
+      duration: "10 hours",
       topics: ["REST APIs", "JSON Parsing", "Retrofit", "Firebase"],
       color: "from-green-500 to-teal-500"
     },
@@ -107,7 +107,7 @@ const Index = () => {
     {
       id: 2,
       title: "Java Fundamentals for Android",
-      duration: "60 min", 
+      duration: "60 min",
       thumbnail: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=300&h=200&fit=crop",
       isLocked: true
     },
@@ -115,7 +115,7 @@ const Index = () => {
       id: 3,
       title: "Building Your First App",
       duration: "90 min",
-      thumbnail: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=300&h=200&fit=crop", 
+      thumbnail: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=300&h=200&fit=crop",
       isLocked: true
     },
     {
@@ -149,14 +149,14 @@ const Index = () => {
                 <p className="text-gray-400 text-xs hidden sm:block">Solutions</p>
               </div>
             </div>
-            
+
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-6">
               <a href="#home" className="text-gray-300 hover:text-blue-400 transition-colors font-medium text-sm">Home</a>
               <button onClick={scrollToInternship} className="text-gray-300 hover:text-blue-400 transition-colors font-medium text-sm">Internship Details</button>
               <Link to="/contact" className="text-gray-300 hover:text-blue-400 transition-colors font-medium text-sm">Contact</Link>
               <Link to="/payment" className="text-gray-300 hover:text-blue-400 transition-colors font-medium text-sm">Payment</Link>
-              <Button 
+              <Button
                 onClick={() => setIsLoginOpen(true)}
                 className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white text-sm px-4 py-2"
               >
@@ -180,7 +180,7 @@ const Index = () => {
               <button onClick={scrollToInternship} className="block text-gray-300 hover:text-blue-400 transition-colors text-left py-2">Internship Details</button>
               <Link to="/contact" className="block text-gray-300 hover:text-blue-400 transition-colors py-2">Contact</Link>
               <Link to="/payment" className="block text-gray-300 hover:text-blue-400 transition-colors py-2">Payment</Link>
-              <Button 
+              <Button
                 onClick={() => setIsLoginOpen(true)}
                 className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white mt-2"
               >
@@ -201,14 +201,14 @@ const Index = () => {
               </span>
             </div>
             <h1 className="text-2xl sm:text-4xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight px-2">
-              Master <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Android Development</span> 
+              Master <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Android Development</span>
               <br />Build Real Apps in 2 Months
             </h1>
             <p className="text-base sm:text-lg lg:text-xl text-gray-300 mb-6 sm:mb-8 leading-relaxed max-w-3xl mx-auto px-2">
-              From Java fundamentals to deploying E-commerce apps like Zomato & Swiggy. 
+              From Java fundamentals to deploying E-commerce apps like Zomato & Swiggy.
               Join 200+ students building their tech careers with hands-on projects and industry mentorship.
             </p>
-            
+
             {/* Pricing Banner */}
             <div className="bg-gradient-to-r from-red-500/10 to-orange-500/10 border border-red-500/30 rounded-2xl p-4 sm:p-6 lg:p-8 mb-8 sm:mb-12 max-w-2xl mx-auto backdrop-blur-sm">
               <div className="flex items-center justify-center mb-4 sm:mb-6">
@@ -226,23 +226,30 @@ const Index = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center px-2">
-              <Button 
-                size="lg" 
-                onClick={() => setIsEnrollmentOpen(true)}
+              <Button
+                size="lg"
+                onClick={() =>
+                  window.open('https://forms.gle/fuYWBGZ8dPD4kaVH7', '_blank')
+                }
                 className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 sm:px-10 py-4 sm:py-6 text-base sm:text-lg font-semibold transform hover:scale-105 transition-all duration-200"
               >
                 <CreditCard className="mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6" />
-                Enroll Now - ₹599
-                <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
+                Enroll Now 
+                {/* <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" /> */}
               </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
+
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={() =>
+                  window.open('https://chat.whatsapp.com/Jty04X7Ezw2Ci3Z8BTwR7h', '_blank')
+                }
                 className="border-2 border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white px-6 sm:px-10 py-4 sm:py-6 text-base sm:text-lg font-semibold transition-all duration-200"
               >
                 <MessageCircle className="mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6" />
                 Join WhatsApp Community
               </Button>
+
             </div>
           </div>
         </div>
@@ -257,8 +264,8 @@ const Index = () => {
             {previewVideos.map((video) => (
               <Card key={video.id} className="bg-gray-800 border-gray-700 hover:border-blue-500/50 transition-all duration-300 group cursor-pointer">
                 <div className="relative">
-                  <img 
-                    src={video.thumbnail} 
+                  <img
+                    src={video.thumbnail}
                     alt={video.title}
                     className="w-full h-32 sm:h-40 object-cover rounded-t-lg"
                   />
@@ -286,7 +293,7 @@ const Index = () => {
             ))}
           </div>
           <div className="text-center mt-6 sm:mt-8">
-            <Button 
+            <Button
               onClick={() => setIsLoginOpen(true)}
               className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 sm:px-8 py-2 sm:py-3"
             >
@@ -327,8 +334,8 @@ const Index = () => {
             {projects.map((project, index) => (
               <Card key={index} className="bg-gray-800 border-gray-700 hover:border-blue-500/50 transition-all duration-300 hover:scale-105 group overflow-hidden">
                 <div className="relative">
-                  <img 
-                    src={project.image} 
+                  <img
+                    src={project.image}
                     alt={project.title}
                     className="w-full h-40 sm:h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
@@ -408,7 +415,7 @@ const Index = () => {
           <div className="bg-gray-800/80 rounded-3xl p-6 sm:p-8 lg:p-12 max-w-4xl mx-auto border border-gray-700 backdrop-blur-sm">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 sm:mb-6">Ready to Transform Your Career?</h2>
             <p className="text-lg sm:text-xl text-gray-300 mb-6 sm:mb-8">Join the next generation of Android developers</p>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
               <div className="text-center">
                 <div className="text-2xl sm:text-3xl font-bold text-blue-400 mb-2">45+</div>
@@ -423,20 +430,20 @@ const Index = () => {
                 <p className="text-gray-400 text-sm sm:text-base">Industry Certificates</p>
               </div>
             </div>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
-              <Button 
-                size="lg" 
-                onClick={() => setIsEnrollmentOpen(true)}
+              <Button
+                size="lg"
+                onClick={() =>  window.open('https://forms.gle/fuYWBGZ8dPD4kaVH7', '_blank')}
                 className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 sm:px-10 py-4 sm:py-6 text-base sm:text-lg font-semibold"
               >
                 <CreditCard className="mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6" />
                 Secure Your Spot - ₹599
               </Button>
               <Link to="/payment">
-                <Button 
-                  size="lg" 
-                  variant="outline" 
+                <Button
+                  size="lg"
+                  variant="outline"
                   className="border-2 border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white px-6 sm:px-10 py-4 sm:py-6 text-base sm:text-lg font-semibold w-full sm:w-auto"
                 >
                   <FileText className="mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6" />
@@ -464,7 +471,7 @@ const Index = () => {
               </div>
               <p className="text-gray-400 mb-4 text-sm sm:text-base">Empowering the next generation of developers through quality education and hands-on training.</p>
             </div>
-            
+
             <div>
               <h3 className="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Quick Links</h3>
               <div className="space-y-1 sm:space-y-2">
@@ -474,16 +481,16 @@ const Index = () => {
                 <Link to="/payment" className="block text-gray-400 hover:text-blue-400 transition-colors text-sm">Payment</Link>
               </div>
             </div>
-            
+
             <div>
               <h3 className="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Contact Info</h3>
               <div className="space-y-1 sm:space-y-2 text-gray-400 text-sm">
-                <p>Email: info@lytortech.com</p>
-                <p>Phone: +91 9876543210</p>
-                <p>WhatsApp: +91 9876543210</p>
+                {/* <p>Email: info@lytortech.com</p> */}
+                <p>Phone: +91 6301 111 060</p>
+                <p>WhatsApp: +91 6301 111 060</p>
               </div>
             </div>
-            
+
             <div>
               <h3 className="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Legal</h3>
               <div className="space-y-1 sm:space-y-2">
@@ -493,7 +500,7 @@ const Index = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="border-t border-gray-800 mt-6 sm:mt-8 pt-6 sm:pt-8 text-center">
             <p className="text-gray-400 text-xs sm:text-sm">© 2024 Lytortech Solutions Private Limited. All rights reserved.</p>
           </div>

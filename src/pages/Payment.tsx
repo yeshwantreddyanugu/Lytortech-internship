@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, CreditCard, Smartphone, Check, Star, Shield, Clock, Users, Award, QrCode, Copy, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 
 const Payment = () => {
@@ -86,18 +86,16 @@ const Payment = () => {
                   {paymentMethods.map((method) => (
                     <div
                       key={method.id}
-                      className={`border-2 rounded-xl p-3 sm:p-4 cursor-pointer transition-all duration-200 ${
-                        selectedMethod === method.id
-                          ? 'border-blue-500 bg-blue-500/10'
-                          : 'border-gray-600 hover:border-gray-500'
-                      }`}
+                      className={`border-2 rounded-xl p-3 sm:p-4 cursor-pointer transition-all duration-200 ${selectedMethod === method.id
+                        ? 'border-blue-500 bg-blue-500/10'
+                        : 'border-gray-600 hover:border-gray-500'
+                        }`}
                       onClick={() => setSelectedMethod(method.id)}
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-3">
-                          <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center ${
-                            selectedMethod === method.id ? 'bg-blue-500' : 'bg-gray-700'
-                          }`}>
+                          <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center ${selectedMethod === method.id ? 'bg-blue-500' : 'bg-gray-700'
+                            }`}>
                             {method.icon}
                           </div>
                           <div>
@@ -110,11 +108,10 @@ const Payment = () => {
                             <p className="text-gray-400 text-xs sm:text-sm">{method.subtitle}</p>
                           </div>
                         </div>
-                        <div className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 ${
-                          selectedMethod === method.id
-                            ? 'border-blue-500 bg-blue-500'
-                            : 'border-gray-500'
-                        }`}>
+                        <div className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 ${selectedMethod === method.id
+                          ? 'border-blue-500 bg-blue-500'
+                          : 'border-gray-500'
+                          }`}>
                           {selectedMethod === method.id && (
                             <Check className="w-3 h-3 sm:w-4 sm:h-4 text-white m-auto" />
                           )}
@@ -137,22 +134,22 @@ const Payment = () => {
                   <CardContent className="space-y-4 sm:space-y-6">
                     <div className="text-center">
                       <div className="bg-white p-3 sm:p-4 rounded-xl inline-block mb-4">
-                        <img 
-                          src="https://images.unsplash.com/photo-1611367819402-8856ba2b3d30?w=200&h=200&fit=crop" 
-                          alt="UPI QR Code" 
+                        <img
+                          src="https://images.unsplash.com/photo-1611367819402-8856ba2b3d30?w=200&h=200&fit=crop"
+                          alt="UPI QR Code"
                           className="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-lg"
                         />
                       </div>
                       <p className="text-gray-300 text-sm mb-4">Scan QR code with any UPI app</p>
                     </div>
-                    
+
                     <div className="bg-gray-700/50 rounded-xl p-3 sm:p-4">
                       <h4 className="text-white font-semibold mb-3 text-sm sm:text-base">Manual Payment Details:</h4>
                       <div className="space-y-2 sm:space-y-3">
                         <div className="flex justify-between items-center">
                           <span className="text-gray-300 text-sm">UPI ID:</span>
                           <div className="flex items-center space-x-2">
-                            <span className="text-blue-400 font-mono text-sm">lytortech@paytm</span>
+                            <span className="text-blue-400 font-mono text-sm">6301111060@ybl</span>
                             <Button
                               size="sm"
                               variant="outline"
@@ -178,11 +175,11 @@ const Payment = () => {
                       <h4 className="text-blue-400 font-semibold mb-2 text-sm">📱 Payment Instructions:</h4>
                       <ol className="text-gray-300 text-xs sm:text-sm space-y-1">
                         <li>1. Open any UPI app (PhonePe, GPay, Paytm, etc.)</li>
-                        <li>2. Scan the QR code or use UPI ID: lytortech@paytm</li>
+                        <li>2. Scan the QR code or use UPI ID: 6301111060@ybl</li>
                         <li>3. Enter amount: ₹599</li>
                         <li>4. Complete the payment</li>
                         <li>5. Screenshot the payment confirmation</li>
-                        <li>6. Send confirmation to our WhatsApp: +91 9876543210</li>
+                        <li>6. Send confirmation to our WhatsApp: +91 6301111060</li>
                       </ol>
                     </div>
                   </CardContent>
@@ -234,43 +231,36 @@ const Payment = () => {
               <Card className="bg-gray-800 border-gray-700">
                 <CardHeader>
                   <CardTitle className="text-lg sm:text-xl text-white">Student Information</CardTitle>
+                  <CardDescription className="text-gray-400 text-sm mt-1">
+                    Fill out the Google Form to register for the internship
+                  </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-3 sm:space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                    <div>
-                      <label className="block text-gray-300 mb-2 text-sm">Full Name</label>
-                      <Input
-                        placeholder="Your full name"
-                        className="bg-gray-700 border-gray-600 text-white text-sm"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-gray-300 mb-2 text-sm">Email</label>
-                      <Input
-                        type="email"
-                        placeholder="your.email@college.edu"
-                        className="bg-gray-700 border-gray-600 text-white text-sm"
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                    <div>
-                      <label className="block text-gray-300 mb-2 text-sm">Phone Number</label>
-                      <Input
-                        placeholder="+91 9876543210"
-                        className="bg-gray-700 border-gray-600 text-white text-sm"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-gray-300 mb-2 text-sm">College Name</label>
-                      <Input
-                        placeholder="Your college name"
-                        className="bg-gray-700 border-gray-600 text-white text-sm"
-                      />
-                    </div>
+
+                <CardContent className="space-y-4">
+                  {/* Demo Image of Form */}
+                  {/* <img
+                    src="https://images.unsplash.com/photo-1560416313-414b33c856a9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="Form Preview"
+                    className="h-40 rounded-lg border border-gray-600 w-full object-cover shadow-lg"
+                  /> */}
+
+
+                  {/* Button to Open Google Form */}
+                  <div className="text-center">
+                    <a
+                      href="https://docs.google.com/forms/d/e/1FAIpQLSd120flhg4IOYYQPTAsBTpZRSPW2owkbUxuCWqpcsTwZkeDrQ/viewform"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg shadow">
+                        Fill Google Form
+                      </Button>
+                    </a>
                   </div>
                 </CardContent>
               </Card>
+
+
             </div>
 
             {/* Order Summary */}
@@ -309,10 +299,19 @@ const Payment = () => {
                     </div>
                   </div>
 
-                  <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white py-2 sm:py-3 text-sm sm:text-base font-semibold">
+                  <Button
+                    onClick={() =>
+                      window.open(
+                        'https://docs.google.com/forms/d/e/1FAIpQLSd120flhg4IOYYQPTAsBTpZRSPW2owkbUxuCWqpcsTwZkeDrQ/viewform',
+                        '_blank'
+                      )
+                    }
+                    className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white py-2 sm:py-3 text-sm sm:text-base font-semibold"
+                  >
                     <Shield className="mr-2 w-4 h-4 sm:w-5 sm:h-5" />
                     Complete Secure Payment
                   </Button>
+
 
                   <div className="flex items-center justify-center space-x-4 text-xs text-gray-400">
                     <div className="flex items-center">
