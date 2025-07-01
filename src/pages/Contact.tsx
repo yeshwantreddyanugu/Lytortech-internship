@@ -207,7 +207,7 @@ const Contact = () => {
                 <Button
                   onClick={() =>
                     window.open(
-                      'https://wa.me/6301111060?text=URGENT: I need immediate help with my course access',
+                      'https://wa.me/916301111060?text=URGENT: I need immediate help with my course access',
                       '_blank'
                     )
                   }
