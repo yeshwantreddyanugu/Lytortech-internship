@@ -15,118 +15,116 @@ const Dashboard = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [currentVideo, setCurrentVideo] = useState(null);
   const [isVideoMinimized, setIsVideoMinimized] = useState(false);
-  const [userData, setUserData] = useState<{ email: string; password: string; url: string } | null>(null);
   const [videoLessons, setVideoLessons] = useState([]);
 
-  // Load user data from localStorage
+  // Load video data
   useEffect(() => {
-    const stored = localStorage.getItem('internshipUser');
-    if (stored) {
-      try {
-        const parsed = JSON.parse(stored);
-        setUserData(parsed);
-        console.log('[📥 User loaded from localStorage]', parsed);
-
-        const updatedLessons = [
-          {
-            id: 1,
-            title: "Introduction to Android Development",
-            duration: "7 min",
-            category: "fundamentals",
-            week: "Week 1",
-            thumbnail: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=250&fit=crop", 
-            isCompleted: true,
-            description: "Getting started with Android Studio and development environment",
-            isPlayable: true // New flag to identify playable videos
-          },
-          {
-            id: 2,
-            title: "Java Fundamentals for Android",
-            duration: "60 min",
-            category: "fundamentals",
-            week: "Week 1",
-            thumbnail: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&h=250&fit=crop",
-            isCompleted: true,
-            description: "Object-oriented programming concepts essential for Android development",
-            isPlayable: false
-          },
-          {
-            id: 3,
-            title: "Building Your First App",
-            duration: "90 min",
-            category: "projects",
-            week: "Week 2",
-            thumbnail: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=250&fit=crop",
-            isCompleted: false,
-            description: "Create a simple Hello World app and understand Android project structure",
-            isPlayable: false
-          },
-          {
-            id: 4,
-            title: "Layouts and UI Components",
-            duration: "75 min",
-            category: "ui-design",
-            week: "Week 2",
-            thumbnail: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop",
-            isCompleted: false,
-            description: "Learn about different layouts and UI components in Android",
-            isPlayable: false
-          },
-          {
-            id: 5,
-            title: "Working with Activities",
-            duration: "50 min",
-            category: "fundamentals",
-            week: "Week 3",
-            thumbnail: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=250&fit=crop",
-            isCompleted: false,
-            description: "Understanding Activity lifecycle and navigation",
-            isPlayable: false
-          },
-          {
-            id: 6,
-            title: "Database Integration with SQLite",
-            duration: "80 min",
-            category: "backend",
-            week: "Week 4",
-            thumbnail: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=250&fit=crop",
-            isCompleted: false,
-            description: "Store and retrieve data using SQLite database",
-            isPlayable: false
-          },
-          {
-            id: 7,
-            title: "REST API Integration",
-            duration: "70 min",
-            category: "backend",
-            week: "Week 5",
-            thumbnail: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&h=250&fit=crop",
-            isCompleted: false,
-            description: "Connect your app to web services and APIs",
-            isPlayable: false
-          },
-          {
-            id: 8,
-            title: "Food Delivery App Development",
-            duration: "120 min",
-            category: "projects",
-            week: "Week 6-7",
-            thumbnail: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=250&fit=crop",
-            isCompleted: false,
-            description: "Build a complete food delivery application like Zomato/Swiggy with real-time features",
-            isPlayable: false
-          }
-        ];
-
-        setVideoLessons(updatedLessons);
-      } catch (err) {
-        console.error('[❌ Error parsing stored user]', err);
+    console.log('[Dashboard] Loading video lessons data');
+    const updatedLessons = [
+      {
+        id: 1,
+        title: "Introduction to Android Development",
+        duration: "7 min",
+        category: "fundamentals",
+        week: "Week 1",
+        thumbnail: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=250&fit=crop",
+        isCompleted: true,
+        description: "Getting started with Android Studio and development environment",
+        isPlayable: true,
+        url: "https://shashirepo.s3.amazonaws.com/video/4e540c0d-b854-4d7a-882c-29d00e8d9ed0.mp4"
+      },
+      {
+        id: 2,
+        title: "Java Fundamentals for Android",
+        duration: "60 min",
+        category: "fundamentals",
+        week: "Week 1",
+        thumbnail: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&h=250&fit=crop",
+        isCompleted: true,
+        description: "Object-oriented programming concepts essential for Android development",
+        isPlayable: true,
+        url: "https://samplelib.com/lib/preview/mp4/sample-30s.mp4"
+      },
+      {
+        id: 3,
+        title: "Building Your First App",
+        duration: "90 min",
+        category: "projects",
+        week: "Week 2",
+        thumbnail: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=250&fit=crop",
+        isCompleted: true,
+        description: "Create a simple Hello World app and understand Android project structure",
+        isPlayable: true,
+        url: "https://www.w3schools.com/html/mov_bbb.mp4"
+      },
+      {
+        id: 4,
+        title: "Layouts and UI Components",
+        duration: "75 min",
+        category: "ui-design",
+        week: "Week 2",
+        thumbnail: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop",
+        isCompleted: false,
+        description: "Learn about different layouts and UI components in Android",
+        isPlayable: false,
+        url: "https://shashirepo.s3.amazonaws.com/video/6e1636a4-d333-4bfc-8b60-e80696428a74.mp4"
+      },
+      {
+        id: 5,
+        title: "Working with Activities",
+        duration: "50 min",
+        category: "fundamentals",
+        week: "Week 3",
+        thumbnail: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=250&fit=crop",
+        isCompleted: false,
+        description: "Understanding Activity lifecycle and navigation",
+        isPlayable: false,
+        url: "https://shashirepo.s3.amazonaws.com/video/6e1636a4-d333-4bfc-8b60-e80696428a74.mp4"
+      },
+      {
+        id: 6,
+        title: "Database Integration with SQLite",
+        duration: "80 min",
+        category: "backend",
+        week: "Week 4",
+        thumbnail: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=250&fit=crop",
+        isCompleted: false,
+        description: "Store and retrieve data using SQLite database",
+        isPlayable: false,
+        url: "https://shashirepo.s3.amazonaws.com/video/6e1636a4-d333-4bfc-8b60-e80696428a74.mp4"
+      },
+      {
+        id: 7,
+        title: "REST API Integration",
+        duration: "70 min",
+        category: "backend",
+        week: "Week 5",
+        thumbnail: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&h=250&fit=crop",
+        isCompleted: false,
+        description: "Connect your app to web services and APIs",
+        isPlayable: false,
+        url: "https://shashirepo.s3.amazonaws.com/video/6e1636a4-d333-4bfc-8b60-e80696428a74.mp4"
+      },
+      {
+        id: 8,
+        title: "Food Delivery App Development",
+        duration: "120 min",
+        category: "projects",
+        week: "Week 6-7",
+        thumbnail: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=250&fit=crop",
+        isCompleted: false,
+        description: "Build a complete food delivery application like Zomato/Swiggy with real-time features",
+        isPlayable: false,
+        url: "https://shashirepo.s3.amazonaws.com/video/6e1636a4-d333-4bfc-8b60-e80696428a74.mp4"
       }
-    }
+    ];
+
+    setVideoLessons(updatedLessons);
+    console.log('[Dashboard] Video lessons data loaded:', updatedLessons);
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem('internshipUser');
+    console.log('[Dashboard] User logging out');
     navigate('/');
   };
 
@@ -149,18 +147,27 @@ const Dashboard = () => {
   const progressPercentage = Math.round((completedLessons / videoLessons.length) * 100);
 
   const handleVideoClick = (video) => {
+    if (currentVideo?.id === video.id) {
+      console.log('[Dashboard] Same video already playing');
+      return;
+    }
+
     if (video.isPlayable) {
       setCurrentVideo(video);
       setIsVideoMinimized(false);
     }
   };
 
+
+
   const handleCloseVideo = () => {
+    console.log('[Dashboard] Closing video player');
     setCurrentVideo(null);
     setIsVideoMinimized(false);
   };
 
   const handleToggleMinimize = () => {
+    console.log('[Dashboard] Toggling video player minimize:', !isVideoMinimized);
     setIsVideoMinimized(!isVideoMinimized);
   };
 
@@ -278,8 +285,8 @@ const Dashboard = () => {
                   variant={selectedCategory === category.id ? "default" : "outline"}
                   size="sm"
                   className={`whitespace-nowrap text-xs sm:text-sm ${selectedCategory === category.id
-                      ? 'bg-blue-500 hover:bg-blue-600'
-                      : 'border-gray-600 text-gray-300 hover:bg-gray-700'
+                    ? 'bg-blue-500 hover:bg-blue-600'
+                    : 'border-gray-600 text-gray-300 hover:bg-gray-700'
                     }`}
                 >
                   {category.name}
@@ -292,11 +299,10 @@ const Dashboard = () => {
         {/* Video Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
           {filteredVideos.map((video) => (
-            <Card 
-              key={video.id} 
-              className={`bg-gray-800 border-gray-700 transition-all duration-300 group overflow-hidden ${
-                video.isPlayable ? 'hover:border-blue-500/50 cursor-pointer' : 'cursor-not-allowed'
-              }`}
+            <Card
+              key={video.id}
+              className={`bg-gray-800 border-gray-700 transition-all duration-300 group overflow-hidden ${video.isPlayable ? 'hover:border-blue-500/50 cursor-pointer' : 'cursor-not-allowed'
+                }`}
               onClick={() => handleVideoClick(video)}
             >
               <div className="relative">
@@ -335,9 +341,8 @@ const Dashboard = () => {
                     {video.isCompleted ? 'Completed' : 'Not Started'}
                   </span>
                 </div>
-                <h3 className={`font-semibold mb-2 transition-colors text-sm sm:text-base line-clamp-2 ${
-                  video.isPlayable ? 'text-white group-hover:text-blue-400' : 'text-gray-400'
-                }`}>
+                <h3 className={`font-semibold mb-2 transition-colors text-sm sm:text-base line-clamp-2 ${video.isPlayable ? 'text-white group-hover:text-blue-400' : 'text-gray-400'
+                  }`}>
                   {video.title}
                 </h3>
                 <p className="text-gray-400 text-xs sm:text-sm line-clamp-2">{video.description}</p>
@@ -362,12 +367,14 @@ const Dashboard = () => {
       {/* Video Player Modal */}
       {currentVideo && (
         <VideoPlayer
+          key={currentVideo.id} // 👈 Force fresh mount only when video changes
           video={currentVideo}
           onClose={handleCloseVideo}
           isMinimized={isVideoMinimized}
           onToggleMinimize={handleToggleMinimize}
         />
       )}
+
     </div>
   );
 };

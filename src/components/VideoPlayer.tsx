@@ -19,6 +19,7 @@ interface VideoPlayerProps {
     thumbnail: string;
     description: string;
     isPlayable: boolean;
+    url: string;
   };
   onClose: () => void;
   isMinimized: boolean;
@@ -34,49 +35,57 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [user, setUser] = useState<any>(null);
   const [hasError, setHasError] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const navigate = useNavigate();
 
-  // Load user data
   useEffect(() => {
-    const storedUser = localStorage.getItem('internshipUser');
-    if (storedUser) {
-      try {
-        const parsedUser = JSON.parse(storedUser);
-        setUser(parsedUser);
-      } catch (e) {
-        console.error('Error parsing user data:', e);
-      }
-    }
-  }, []);
+    console.log('[VideoPlayer] Initializing with video:', video.id, video.title);
+  }, [video.id]);
 
-  // 🟡 Handle browser back button (←)
+
+  // Handle browser back button (←)
   useEffect(() => {
+    console.log('[VideoPlayer] Setting up popstate listener');
     const handlePopState = () => {
-      onClose(); // just close the video player
+      console.log('[VideoPlayer] Browser back button pressed, closing player');
+      onClose();
     };
 
     window.addEventListener('popstate', handlePopState);
     return () => {
+      console.log('[VideoPlayer] Cleaning up popstate listener');
       window.removeEventListener('popstate', handlePopState);
     };
   }, [onClose]);
 
-  // Video load/play setup
+  // Main video effect
   useEffect(() => {
+    console.log('[VideoPlayer] Setting up video with URL:', video.url);
     const videoElement = videoRef.current;
-    if (!videoElement) return;
+    if (!videoElement) {
+      console.log('[VideoPlayer] Video element not available');
+      return;
+    }
 
     const handleLoadedMetadata = () => {
+      console.log('[VideoPlayer] Video metadata loaded, duration:', videoElement.duration);
       setDuration(videoElement.duration);
+
       if (video.isPlayable) {
+        console.log('[VideoPlayer] Attempting to auto-play video');
         videoElement.play()
-          .then(() => setIsPlaying(true))
+          .then(() => {
+            console.log('[VideoPlayer] Auto-play succeeded');
+            setIsPlaying(true);
+          })
           .catch(err => {
-            console.error('Auto-play failed:', err);
-            setIsPlaying(false);
+            console.error('[VideoPlayer] Auto-play failed:', err);
+            // Fallback to muted autoplay
+            videoElement.muted = true;
+            videoElement.play()
+              .then(() => setIsPlaying(true))
+              .catch(e => console.error('[VideoPlayer] Muted autoplay also failed:', e));
           });
       }
     };
@@ -86,35 +95,51 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     };
 
     const handleError = () => {
-      console.error('Video error:', videoElement.error);
+      console.error('[VideoPlayer] Video error:', videoElement.error);
       setHasError(true);
+    };
+
+    const handleCanPlay = () => {
+      console.log('[VideoPlayer] Video can play');
     };
 
     videoElement.addEventListener('loadedmetadata', handleLoadedMetadata);
     videoElement.addEventListener('timeupdate', handleTimeUpdate);
     videoElement.addEventListener('error', handleError);
+    videoElement.addEventListener('canplay', handleCanPlay);
+
+    // Force reload the video source
+    // videoElement.load();
+    console.log('[VideoPlayer] Video source loaded');
 
     return () => {
+      console.log('[VideoPlayer] Cleaning up video event listeners');
       videoElement.removeEventListener('loadedmetadata', handleLoadedMetadata);
       videoElement.removeEventListener('timeupdate', handleTimeUpdate);
       videoElement.removeEventListener('error', handleError);
+      videoElement.removeEventListener('canplay', handleCanPlay);
     };
-  }, [video.isPlayable]);
+  }, [video.url, video.isPlayable]);
 
   const togglePlay = async () => {
     const videoElement = videoRef.current;
-    if (!videoElement) return;
+    if (!videoElement) {
+      console.log('[VideoPlayer] Video element not available for play/pause');
+      return;
+    }
 
     try {
       if (isPlaying) {
+        console.log('[VideoPlayer] Pausing video');
         videoElement.pause();
         setIsPlaying(false);
       } else {
+        console.log('[VideoPlayer] Playing video');
         await videoElement.play();
         setIsPlaying(true);
       }
     } catch (err) {
-      console.error('Play/pause error:', err);
+      console.error('[VideoPlayer] Play/pause error:', err);
       setIsPlaying(false);
     }
   };
@@ -129,13 +154,17 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
   const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
     const videoElement = videoRef.current;
-    if (!videoElement || !duration) return;
+    if (!videoElement || !duration) {
+      console.log('[VideoPlayer] Cannot seek - video element or duration not available');
+      return;
+    }
 
     const progressBar = e.currentTarget;
     const rect = progressBar.getBoundingClientRect();
     const pos = (e.clientX - rect.left) / rect.width;
     const seekTime = pos * duration;
 
+    console.log('[VideoPlayer] Seeking to:', seekTime);
     videoElement.currentTime = seekTime;
     setCurrentTime(seekTime);
   };
@@ -143,34 +172,35 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   const handleReset = () => {
     const videoElement = videoRef.current;
     if (videoElement) {
+      console.log('[VideoPlayer] Resetting video to start');
       videoElement.currentTime = 0;
       setCurrentTime(0);
       if (!isPlaying) {
         videoElement.play()
-          .then(() => setIsPlaying(true))
-          .catch(err => console.error('Play failed:', err));
+          .then(() => {
+            console.log('[VideoPlayer] Play after reset succeeded');
+            setIsPlaying(true);
+          })
+          .catch(err => console.error('[VideoPlayer] Play after reset failed:', err));
       }
     }
   };
 
   return (
     <div
-      className={`fixed inset-0 z-50 bg-black/95 backdrop-blur-sm transition-all duration-300 ${
-        isMinimized ? 'bottom-0 right-4 w-80 h-48 rounded-t-xl' : ''
-      }`}
+      className={`fixed inset-0 z-50 bg-black/95 backdrop-blur-sm transition-all duration-300 ${isMinimized ? 'bottom-0 right-4 w-80 h-48 rounded-t-xl' : ''
+        }`}
     >
       <div
-        className={`${
-          isMinimized ? 'h-full' : 'container mx-auto h-full flex flex-col'
-        } p-4`}
+        className={`${isMinimized ? 'h-full' : 'container mx-auto h-full flex flex-col'
+          } p-4`}
       >
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex-1">
             <h2
-              className={`text-white font-semibold ${
-                isMinimized ? 'text-sm' : 'text-xl'
-              }`}
+              className={`text-white font-semibold ${isMinimized ? 'text-sm' : 'text-xl'
+                }`}
             >
               {video.title}
             </h2>
@@ -204,46 +234,51 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
         {/* Video Player */}
         <div
-          className={`relative bg-black overflow-hidden ${
-            isMinimized ? 'flex-1 rounded-t-xl' : 'flex-1 w-full h-full'
-          }`}
+          className={`relative bg-black overflow-hidden ${isMinimized ? 'flex-1 rounded-t-xl' : 'flex-1 w-full h-full'
+            }`}
         >
           {hasError ? (
             <div className="absolute inset-0 flex items-center justify-center text-white bg-red-900/50">
               <p>Error loading video. Please check the URL.</p>
             </div>
           ) : (
-            <video
-              ref={videoRef}
-              className="absolute top-0 left-0 w-full h-full rounded-lg"
-              muted
-              playsInline
-              controls={false}
-              onEnded={() => setIsPlaying(false)}
-              preload="auto"
-            >
-              <source
-                src={user?.url || 'https://www.w3schools.com/html/mov_bbb.mp4'}
-                type="video/mp4"
-              />
-              Your browser does not support the video tag.
-            </video>
-          )}
-
-          {/* Play Overlay */}
-          {!isPlaying && !hasError && (
-            <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-              <Button
-                onClick={togglePlay}
-                className="w-16 h-16 rounded-full bg-blue-500/80 hover:bg-blue-500 text-white"
+            <>
+              <video
+                ref={videoRef}
+                className="absolute top-0 left-0 w-full h-full rounded-lg"
+                autoPlay
+                playsInline
+                controls={false}
+                onEnded={() => {
+                  console.log('[VideoPlayer] Video ended');
+                  setIsPlaying(false);
+                }}
+                preload="auto"
+                key={video.url} // Force re-render when URL changes
               >
-                <Play className="w-8 h-8 ml-1" />
-              </Button>
-            </div>
+                <source
+                  src={video.url}
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
+
+              {/* Play Overlay */}
+              {!isPlaying && video.url && (
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                  <Button
+                    onClick={togglePlay}
+                    className="w-16 h-16 rounded-full bg-blue-500/80 hover:bg-blue-500 text-white"
+                  >
+                    <Play className="w-8 h-8 ml-1" />
+                  </Button>
+                </div>
+              )}
+            </>
           )}
 
           {/* Video Controls */}
-          {!isMinimized && video.isPlayable && !hasError && (
+          {!isMinimized && video.isPlayable && !hasError && video.url && (
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
               <div className="flex items-center space-x-4">
                 <Button
@@ -302,4 +337,4 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   );
 };
 
-export default VideoPlayer;
+export default React.memo(VideoPlayer);
