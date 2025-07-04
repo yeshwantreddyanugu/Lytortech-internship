@@ -42,7 +42,7 @@ const Dashboard = () => {
         thumbnail: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&h=250&fit=crop",
         isCompleted: true,
         description: "Object-oriented programming concepts essential for Android development",
-        isPlayable: true,
+        isPlayable: false,
         url: "https://samplelib.com/lib/preview/mp4/sample-30s.mp4"
       },
       {
@@ -52,9 +52,9 @@ const Dashboard = () => {
         category: "projects",
         week: "Week 2",
         thumbnail: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=250&fit=crop",
-        isCompleted: true,
+        isCompleted: false,
         description: "Create a simple Hello World app and understand Android project structure",
-        isPlayable: true,
+        isPlayable: false,
         url: "https://www.w3schools.com/html/mov_bbb.mp4"
       },
       {
@@ -146,6 +146,7 @@ const Dashboard = () => {
   const completedLessons = videoLessons.filter(video => video.isCompleted).length;
   const progressPercentage = Math.round((completedLessons / videoLessons.length) * 100);
 
+  // In your Dashboard component's handleVideoClick:
   const handleVideoClick = (video) => {
     if (currentVideo?.id === video.id) {
       console.log('[Dashboard] Same video already playing');
@@ -155,6 +156,8 @@ const Dashboard = () => {
     if (video.isPlayable) {
       setCurrentVideo(video);
       setIsVideoMinimized(false);
+      // Push a new state to history
+      window.history.pushState({ isVideoOpen: true }, '');
     }
   };
 
@@ -164,6 +167,10 @@ const Dashboard = () => {
     console.log('[Dashboard] Closing video player');
     setCurrentVideo(null);
     setIsVideoMinimized(false);
+    // Go back in history if we have a video state
+    if (window.history.state?.isVideoOpen) {
+      window.history.back();
+    }
   };
 
   const handleToggleMinimize = () => {

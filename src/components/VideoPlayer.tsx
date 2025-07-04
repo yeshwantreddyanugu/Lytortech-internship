@@ -41,23 +41,29 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
   useEffect(() => {
     console.log('[VideoPlayer] Initializing with video:', video.id, video.title);
-  }, [video.id]);
+    
+    // Push a new state when video player opens
+    window.history.pushState({ isVideoOpen: true }, '');
 
-
-  // Handle browser back button (←)
-  useEffect(() => {
-    console.log('[VideoPlayer] Setting up popstate listener');
-    const handlePopState = () => {
-      console.log('[VideoPlayer] Browser back button pressed, closing player');
-      onClose();
+    const handlePopState = (event: PopStateEvent) => {
+      // Check if we're coming from video player state
+      if (event.state?.isVideoOpen) {
+        console.log('[VideoPlayer] Browser back button pressed, closing player');
+        onClose();
+        // Prevent default back navigation
+        event.preventDefault();
+      }
     };
 
     window.addEventListener('popstate', handlePopState);
     return () => {
-      console.log('[VideoPlayer] Cleaning up popstate listener');
       window.removeEventListener('popstate', handlePopState);
+      // Clean up our state when component unmounts
+      if (window.history.state?.isVideoOpen) {
+        window.history.back();
+      }
     };
-  }, [onClose]);
+  }, [video.id, onClose]);
 
   // Main video effect
   useEffect(() => {
@@ -107,10 +113,6 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     videoElement.addEventListener('timeupdate', handleTimeUpdate);
     videoElement.addEventListener('error', handleError);
     videoElement.addEventListener('canplay', handleCanPlay);
-
-    // Force reload the video source
-    // videoElement.load();
-    console.log('[VideoPlayer] Video source loaded');
 
     return () => {
       console.log('[VideoPlayer] Cleaning up video event listeners');
@@ -254,7 +256,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
                   setIsPlaying(false);
                 }}
                 preload="auto"
-                key={video.url} // Force re-render when URL changes
+                key={video.url}
               >
                 <source
                   src={video.url}
