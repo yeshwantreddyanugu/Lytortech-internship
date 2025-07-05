@@ -292,8 +292,8 @@ const Dashboard = () => {
                   variant={selectedCategory === category.id ? "default" : "outline"}
                   size="sm"
                   className={`whitespace-nowrap text-xs sm:text-sm ${selectedCategory === category.id
-                    ? 'bg-blue-500 hover:bg-blue-600'
-                    : 'border-gray-600 text-gray-300 hover:bg-gray-700'
+                      ? 'bg-blue-500 hover:bg-blue-600'
+                      : 'border-gray-600 text-black hover:bg-gray-700'
                     }`}
                 >
                   {category.name}
@@ -302,6 +302,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+
 
         {/* Video Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
