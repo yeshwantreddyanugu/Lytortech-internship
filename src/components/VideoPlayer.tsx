@@ -174,9 +174,9 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             <Button onClick={toggleFullscreen} variant="ghost" size="sm" className="text-white hover:bg-gray-700">
               <Maximize2 className="w-4 h-4" />
             </Button>
-            {/* <Button onClick={onToggleMinimize} variant="ghost" size="sm" className="text-white hover:bg-gray-700">
+            <Button onClick={onToggleMinimize} variant="ghost" size="sm" className="text-white hover:bg-gray-700">
               {isMinimized ? <Maximize2 className="w-4 h-4" /> : <Minimize2 className="w-4 h-4" />}
-            </Button> */}
+            </Button>
             <Button onClick={onClose} variant="ghost" size="sm" className="text-white hover:bg-gray-700">
               <X className="w-4 h-4" />
             </Button>
