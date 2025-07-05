@@ -50,7 +50,7 @@ const Index = () => {
     {
       title: "Food Delivery App",
       description: "Zomato/Swiggy clone with real-time tracking and restaurant management",
-      image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=250&fit=crop",
+      image: "https://images.unsplash.com/photo-1605655293594-92e21b3409bf?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       features: ["Restaurant Search", "Order Tracking", "Payment Gateway", "Reviews System"]
     },
     {
@@ -219,7 +219,7 @@ const Index = () => {
               <div className="text-center">
                 <div className="flex items-center justify-center gap-3 sm:gap-6 mb-3 sm:mb-4">
                   <span className="text-gray-400 line-through text-xl sm:text-2xl lg:text-3xl">₹1,999</span>
-                  <span className="text-green-400 text-3xl sm:text-4xl lg:text-5xl font-bold">₹599</span>
+                  <span className="text-green-400 text-3xl sm:text-4xl lg:text-5xl font-bold">₹799</span>
                 </div>
                 <p className="text-gray-300 text-sm sm:text-base lg:text-lg">Complete internship + certifications + job assistance</p>
               </div>
@@ -438,7 +438,7 @@ const Index = () => {
                 className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 sm:px-10 py-4 sm:py-6 text-base sm:text-lg font-semibold"
               >
                 <CreditCard className="mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6" />
-                Secure Your Spot - ₹599
+                Secure Your Spot - ₹799
               </Button>
               <Link to="/payment">
                 <Button

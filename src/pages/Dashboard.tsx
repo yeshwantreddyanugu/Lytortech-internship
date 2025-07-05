@@ -24,7 +24,7 @@ const Dashboard = () => {
       {
         id: 1,
         title: "Introduction to Android Development",
-        duration: "7 min",
+        duration: "29:14 ",
         category: "fundamentals",
         week: "Week 1",
         thumbnail: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=250&fit=crop",
