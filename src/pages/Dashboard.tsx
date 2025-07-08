@@ -36,14 +36,14 @@ const Dashboard = () => {
       {
         id: 2,
         title: "Java Fundamentals for Android",
-        duration: "60 min",
+        duration: "16:31 ",
         category: "fundamentals",
         week: "Week 1",
         thumbnail: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&h=250&fit=crop",
         isCompleted: true,
         description: "Object-oriented programming concepts essential for Android development",
-        isPlayable: false,
-        url: "https://samplelib.com/lib/preview/mp4/sample-30s.mp4"
+        isPlayable: true,
+        url: "https://shashirepo.s3.amazonaws.com/video/1bf246cf-f921-4276-b7f2-24de6818149d.mp4"
       },
       {
         id: 3,
