@@ -200,14 +200,19 @@ const Index = () => {
                 Limited Time Offer
               </span>
             </div>
-            <h1 className="text-2xl sm:text-4xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight px-2">
-              Master <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Android Development</span>
-              <br />Build Real Apps in 2 Months
+            <h1 className="text-center text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-snug sm:leading-tight px-4 sm:px-6 mb-8">
+              <span className="block text-white">
+                Master
+              </span>
+              <span className="block bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500 bg-clip-text text-transparent">
+                Android Development & AI Agents
+              </span>
+              <span className="block mt-3 text-white">
+                Build <span className="text-purple-300">Real Apps</span> and <span className="text-purple-300">AI Agents</span> in <span className="text-blue-300">2 Months</span>
+              </span>
             </h1>
-            <p className="text-base sm:text-lg lg:text-xl text-gray-300 mb-6 sm:mb-8 leading-relaxed max-w-3xl mx-auto px-2">
-              From Java fundamentals to deploying E-commerce apps like Zomato & Swiggy.
-              Join 200+ students building their tech careers with hands-on projects and industry mentorship.
-            </p>
+
+
 
             {/* Pricing Banner */}
             <div className="bg-gradient-to-r from-red-500/10 to-orange-500/10 border border-red-500/30 rounded-2xl p-4 sm:p-6 lg:p-8 mb-8 sm:mb-12 max-w-2xl mx-auto backdrop-blur-sm">
@@ -218,8 +223,8 @@ const Index = () => {
               </div>
               <div className="text-center">
                 <div className="flex items-center justify-center gap-3 sm:gap-6 mb-3 sm:mb-4">
-                  <span className="text-gray-400 line-through text-xl sm:text-2xl lg:text-3xl">₹1,999</span>
-                  <span className="text-green-400 text-3xl sm:text-4xl lg:text-5xl font-bold">₹799</span>
+                  <span className="text-gray-400 line-through text-xl sm:text-2xl lg:text-3xl">₹9,999</span>
+                  <span className="text-green-400 text-3xl sm:text-4xl lg:text-5xl font-bold">₹2,999</span>
                 </div>
                 <p className="text-gray-300 text-sm sm:text-base lg:text-lg">Complete internship + certifications + job assistance</p>
               </div>
@@ -234,7 +239,7 @@ const Index = () => {
                 className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 sm:px-10 py-4 sm:py-6 text-base sm:text-lg font-semibold transform hover:scale-105 transition-all duration-200"
               >
                 <CreditCard className="mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6" />
-                Enroll Now 
+                Enroll Now
                 {/* <ArrowRight className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" /> */}
               </Button>
 
@@ -434,7 +439,7 @@ const Index = () => {
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
               <Button
                 size="lg"
-                onClick={() =>  window.open('https://forms.gle/fuYWBGZ8dPD4kaVH7', '_blank')}
+                onClick={() => window.open('https://forms.gle/fuYWBGZ8dPD4kaVH7', '_blank')}
                 className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 sm:px-10 py-4 sm:py-6 text-base sm:text-lg font-semibold"
               >
                 <CreditCard className="mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6" />

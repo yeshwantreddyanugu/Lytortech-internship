@@ -68,8 +68,8 @@ const Payment = () => {
             </div>
             <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-2">First 200 Students Only!</h2>
             <div className="flex items-center justify-center gap-3 sm:gap-4">
-              <span className="text-gray-400 line-through text-lg sm:text-xl lg:text-2xl">₹1,999</span>
-              <span className="text-green-400 text-2xl sm:text-3xl lg:text-4xl font-bold">₹799</span>
+              <span className="text-gray-400 line-through text-lg sm:text-xl lg:text-2xl">₹9,999</span>
+              <span className="text-green-400 text-2xl sm:text-3xl lg:text-4xl font-bold">₹2,999</span>
               <span className="bg-green-500/20 text-green-400 px-2 py-1 rounded-lg text-xs sm:text-sm font-semibold">Save ₹1,400</span>
             </div>
           </div>
@@ -162,7 +162,7 @@ const Payment = () => {
                         </div>
                         <div className="flex justify-between items-center">
                           <span className="text-gray-300 text-sm">Amount:</span>
-                          <span className="text-green-400 font-bold text-sm">₹799</span>
+                          <span className="text-green-400 font-bold text-sm">₹2,999</span>
                         </div>
                         <div className="flex justify-between items-center">
                           <span className="text-gray-300 text-sm">Receiver:</span>
@@ -286,15 +286,15 @@ const Payment = () => {
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
                         <span className="text-gray-400">Original Price:</span>
-                        <span className="text-gray-400 line-through">₹1,999</span>
+                        <span className="text-gray-400 line-through">₹9,999</span>
                       </div>
                       <div className="flex justify-between text-sm">
                         <span className="text-gray-400">Discount (70%):</span>
-                        <span className="text-green-400">-₹1,400</span>
+                        <span className="text-green-400">-₹7,000</span>
                       </div>
                       <div className="flex justify-between text-lg sm:text-xl font-bold">
                         <span className="text-white">Total:</span>
-                        <span className="text-green-400">₹799</span>
+                        <span className="text-green-400">₹2,999</span>
                       </div>
                     </div>
                   </div>
