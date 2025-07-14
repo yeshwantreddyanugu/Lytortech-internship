@@ -443,7 +443,7 @@ const Index = () => {
                 className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 sm:px-10 py-4 sm:py-6 text-base sm:text-lg font-semibold"
               >
                 <CreditCard className="mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6" />
-                Secure Your Spot - ₹799
+                Secure Your Spot - ₹2,999
               </Button>
               <Link to="/payment">
                 <Button
