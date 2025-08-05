@@ -52,10 +52,10 @@ const Dashboard = () => {
         category: "projects",
         week: "Week 2",
         thumbnail: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=250&fit=crop",
-        isCompleted: false,
+        isCompleted: true,
         description: "Create a simple Hello World app and understand Android project structure",
-        isPlayable: false,
-        url: "https://www.w3schools.com/html/mov_bbb.mp4"
+        isPlayable: true,
+        url: "https://shashirepo.s3.amazonaws.com/video/f94316c2-ae8d-4271-bef2-a4eaefffb722.mp4"
       },
       {
         id: 4,
@@ -64,10 +64,10 @@ const Dashboard = () => {
         category: "ui-design",
         week: "Week 2",
         thumbnail: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop",
-        isCompleted: false,
+        isCompleted: true,
         description: "Learn about different layouts and UI components in Android",
-        isPlayable: false,
-        url: "https://shashirepo.s3.amazonaws.com/video/6e1636a4-d333-4bfc-8b60-e80696428a74.mp4"
+        isPlayable: true,
+        url: "https://shashirepo.s3.amazonaws.com/video/64f73dcb-07dd-47d0-a24e-ec5cad59a052.mp4"
       },
       {
         id: 5,
