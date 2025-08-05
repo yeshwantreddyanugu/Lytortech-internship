@@ -48,7 +48,7 @@ const Dashboard = () => {
       {
         id: 3,
         title: "Building Your First App",
-        duration: "90 min",
+        duration: "30:38 ",
         category: "projects",
         week: "Week 2",
         thumbnail: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=250&fit=crop",
@@ -60,7 +60,7 @@ const Dashboard = () => {
       {
         id: 4,
         title: "Layouts and UI Components",
-        duration: "75 min",
+        duration: "26:26 ",
         category: "ui-design",
         week: "Week 2",
         thumbnail: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop",
